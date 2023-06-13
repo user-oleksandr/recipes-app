@@ -101,6 +101,7 @@
     width: 50%;
     height: 50%;
     overflow: auto;
+    text-align: start;
 }
 
 .recipe-details .close-button {
@@ -111,6 +112,14 @@
     border: none;
     font-size: 24px;
     cursor: pointer;
+}
+
+.box-button {
+    display: flex;
+}
+
+.box-button button {
+    margin: 0 auto;
 }
 
 .recipe-details h2 {

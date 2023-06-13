@@ -35,7 +35,7 @@ function LoginForm({onLogin}) {
                     })
                 }
             />
-            <button type="submit">Увійти</button>
+            <button type="submit">Enter</button>
         </form>
     );
 }

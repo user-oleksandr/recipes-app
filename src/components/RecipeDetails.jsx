@@ -15,7 +15,9 @@ const RecipeDetails = ({recipe, onAddToSavedRecipes, onClose}) => {
                     <li key={index}>{ingredient}</li>
                 ))}
             </ul>
-            <button onClick={() => onAddToSavedRecipes(recipe)}>Add to saved recipes</button>
+            <div className='box-button'>
+                <button onClick={() => onAddToSavedRecipes(recipe)}>Add to saved recipes</button>
+            </div>
         </div>
     );
 };
