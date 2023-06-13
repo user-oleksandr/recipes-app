@@ -1,38 +1,327 @@
-.App {
-  text-align: center;
+.recipe-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.recipe-card {
+    width: 300px;
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.recipe-card:hover {
+    background-color: #eaeaea;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.recipe-card h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
 }
 
-.App-link {
-  color: #61dafb;
+.recipe-card p {
+    font-size: 14px;
+    color: #555;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.recipe-card img {
+    width: 300px;
+    height: 200px;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.saved-recipes {
+    text-align: center;
+}
+
+.saved-recipes h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.saved-recipe-card {
+    width: 300px;
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    display: inline-block;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.saved-recipe-card h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.saved-recipe-card p {
+    font-size: 14px;
+    color: #555;
+}
+
+.saved-recipe-card img {
+    width: 100%;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.saved-recipe-card button {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.saved-recipe-card button:hover {
+    background-color: #d32f2f;
+}
+
+.saved-recipe-card button:focus {
+    outline: none;
+}
+
+.recipe-details {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #d2d1d1;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+    width: 50%;
+    height: 50%;
+    overflow: auto;
+}
+
+.recipe-details .close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.recipe-details h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.recipe-details p {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.recipe-details img {
+    width: 100%;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.recipe-details h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.recipe-details ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 10px;
+}
+
+.recipe-details li {
+    margin-bottom: 5px;
+}
+
+.recipe-details button {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.recipe-details .close-button {
+    background-color: #f44336;
+}
+
+.recipe-details .close-button:hover {
+    background-color: #d32f2f;
+}
+
+.recipe-details button:hover {
+    background-color: #d32f2f;
+}
+
+.recipe-details button:focus {
+    outline: none;
+}
+
+.search-recipes {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+
+.search-recipes input[type="text"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+    font-size: 16px;
+    width: 300px;
+}
+
+.search-recipes button {
+    padding: 10px 20px;
+    background-color: #f44336;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.search-recipes button:hover {
+    background-color: #d32f2f;
+}
+
+.Authentication {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.Authentication h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.Authentication button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.Authentication button:hover {
+    background-color: #d32f2f;
+}
+
+.Authentication form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.Authentication form label {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.Authentication form input {
+    padding: 8px;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.Authentication form button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #f44336;;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.Authentication form button:hover {
+    background-color: #d32f2f;
+}
+
+.saved-recipes {
+    width: 80%;
+    margin: 75px auto;
+    background-color: #d2d1d1;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.saved-recipes h2 {
+    color: #333;
+}
+
+.saved-recipe-card {
+    background-color: #fff;
+    width: 12em;
+    padding: 10px;
+    margin-left: 0.5em;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.saved-recipe-card h3 {
+    color: #333;
+}
+
+.saved-recipe-card p {
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.saved-recipe-card img {
+    width: 12em;
+    height: 8em;
+    margin-bottom: 10px;
+}
+
+.saved-recipe-card button {
+    background-color: #e74c3c;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.saved-recipe-card button:hover {
+    background-color: #c0392b;
+}
+
+.box-login {
+    width: 50%;
+    margin: 0 auto;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    padding: 2em;
+    border-radius: 10px;
+}
+
+.box-aut {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 25px;
+    background-color: #d7d6d6;
+}
+
+.box-aut button {
+    width: 100px;
+    height: 50px;
 }
