@@ -9,13 +9,15 @@ const SearchRecipes = ({ onSearch }) => {
 
     return (
         <div className="search-recipes">
-            <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search by name or ingredients"
-            />
-            <button onClick={handleSearch}>Search</button>
+            <div className='box-search'>
+                <input
+                    type="text"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    placeholder="Search by name or ingredients"
+                />
+                <button onClick={handleSearch}>Search</button>
+            </div>
         </div>
     );
 };
