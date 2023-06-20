@@ -9,7 +9,7 @@ const RecipeDetails = ({recipe, onAddToSavedRecipes, onClose}) => {
             <h2>{title}</h2>
             <p>{description}</p>
             {image && <img src={image} alt={title}/>}
-            <h3>Інгредієнти:</h3>
+            <h3>Ingredients:</h3>
             <ul>
                 {ingredients.map((ingredient, index) => (
                     <li key={index}>{ingredient}</li>
