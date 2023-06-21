@@ -7,7 +7,7 @@ const CookingMode = ({ recipe, onToggleMode }) => {
         return null;
     }
 
-    const { title, ingredients } = recipe;
+    const { title, ingredients, instructions } = recipe;
 
     const handleIngredientToggle = (ingredient) => {
         if (completedIngredients.includes(ingredient)) {
@@ -23,8 +23,11 @@ const CookingMode = ({ recipe, onToggleMode }) => {
 
     return (
         <div className="cooking-mode">
-            <h2>{title}</h2>
-            <h3>List of ingredients:</h3>
+            <div>
+                <h2>{title}</h2>
+                <h3>List of ingredients:</h3>
+            </div>
+
             <ul>
                 {ingredients.map((ingredient, index) => (
                     <li
@@ -36,6 +39,13 @@ const CookingMode = ({ recipe, onToggleMode }) => {
                     </li>
                 ))}
             </ul>
+
+            <div>
+                <h3>Instructions:</h3>
+                <p>{instructions}</p>
+
+            </div>
+
             <button onClick={handleResetCookingMode}>Reset cooking mode</button>
             <button onClick={onToggleMode}>Return to recipe details</button>
         </div>

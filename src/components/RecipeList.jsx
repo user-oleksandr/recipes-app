@@ -21,9 +21,20 @@ const RecipeList = ({ onRecipeSelect, searchQuery }) => {
                         id: recipe.uri,
                         title: recipe.label,
                         description: recipe.source,
-                        ingredients: recipe.ingredients.map((ingredient) => ingredient.text),
+                        ingredients: recipe.ingredientLines,
                         instructions: recipe.url,
                         image: recipe.image,
+                        calories: recipe.calories,
+                        totalTime: recipe.totalTime,
+                        dietLabels: recipe.dietLabels,
+                        healthLabels: recipe.healthLabels,
+                        yield: recipe.yield,
+                        cuisineType: recipe.cuisineType,
+                        mealType: recipe.mealType,
+                        dishType: recipe.dishType,
+                        cautions: recipe.cautions,
+                        totalWeight: recipe.totalWeight,
+                        totalDaily: recipe.totalDaily,
                     };
                 });
 
