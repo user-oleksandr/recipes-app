@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import Authentication from './components/authentication/Authentication';
 import RecipeList from './components/RecipeList';
 import SavedRecipes from './components/SavedRecipes';
@@ -50,11 +50,17 @@ function App() {
         <div className="App">
             <Authentication>
                 {cookingMode ? (
-                    <CookingMode recipe={selectedRecipe} onToggleMode={handleCookingModeToggle} />
+                    <CookingMode recipe={selectedRecipe} onToggleMode={handleCookingModeToggle}/>
                 ) : (
-                    <SearchRecipes onSearch={handleSearchRecipes} />
+                    <>
+                        <SearchRecipes onSearch={handleSearchRecipes}/>
+                        {searchQuery ? (
+                            <RecipeList onRecipeSelect={handleRecipeSelect} searchQuery={searchQuery}/>
+                        ) : (
+                            <RecipeList onRecipeSelect={handleRecipeSelect}/>
+                        )}
+                    </>
                 )}
-                <RecipeList onRecipeSelect={handleRecipeSelect} />
                 {selectedRecipe && (
                     <RecipeDetails
                         recipe={selectedRecipe}
@@ -62,8 +68,7 @@ function App() {
                         onClose={closeRecipeDetails}
                     />
                 )}
-
-                <SavedRecipes savedRecipes={savedRecipes} onDeleteRecipe={handleDeleteRecipe} />
+                <SavedRecipes savedRecipes={savedRecipes} onDeleteRecipe={handleDeleteRecipe}/>
             </Authentication>
         </div>
     );

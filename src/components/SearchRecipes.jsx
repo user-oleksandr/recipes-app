@@ -1,10 +1,16 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 
-const SearchRecipes = ({ onSearch }) => {
+const SearchRecipes = ({onSearch}) => {
     const [searchQuery, setSearchQuery] = useState('');
 
     const handleSearch = () => {
         onSearch(searchQuery);
+    };
+
+    const handleKeyPress = (e) => {
+        if (e.key === 'Enter') {
+            handleSearch();
+        }
     };
 
     return (
@@ -14,6 +20,7 @@ const SearchRecipes = ({ onSearch }) => {
                     type="text"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
+                    onKeyPress={handleKeyPress}
                     placeholder="Search by name or ingredients"
                 />
                 <button onClick={handleSearch}>Search</button>
