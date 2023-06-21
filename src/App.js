@@ -1,10 +1,11 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Authentication from './components/authentication/Authentication';
 import RecipeList from './components/RecipeList';
 import SavedRecipes from './components/SavedRecipes';
 import RecipeDetails from './components/RecipeDetails';
 import CookingMode from './components/CookingMode';
 import SearchRecipes from './components/SearchRecipes';
+import Modal from './components/Modal';
 import './App.css';
 
 function App() {
@@ -46,29 +47,39 @@ function App() {
         setSelectedRecipe(null);
     };
 
+    const closeModal = () => {
+        setSelectedRecipe(null);
+        setCookingMode(false);
+    };
+
     return (
         <div className="App">
             <Authentication>
                 {cookingMode ? (
-                    <CookingMode recipe={selectedRecipe} onToggleMode={handleCookingModeToggle}/>
+                    <Modal onClose={closeModal}>
+                        <CookingMode recipe={selectedRecipe} onToggleMode={handleCookingModeToggle} />
+                    </Modal>
                 ) : (
                     <>
-                        <SearchRecipes onSearch={handleSearchRecipes}/>
+                        <SearchRecipes onSearch={handleSearchRecipes} />
                         {searchQuery ? (
-                            <RecipeList onRecipeSelect={handleRecipeSelect} searchQuery={searchQuery}/>
+                            <RecipeList onRecipeSelect={handleRecipeSelect} searchQuery={searchQuery} />
                         ) : (
-                            <RecipeList onRecipeSelect={handleRecipeSelect}/>
+                            <RecipeList onRecipeSelect={handleRecipeSelect} />
                         )}
                     </>
                 )}
-                {selectedRecipe && (
-                    <RecipeDetails
-                        recipe={selectedRecipe}
-                        onAddToSavedRecipes={handleAddToSavedRecipes}
-                        onClose={closeRecipeDetails}
-                    />
+                {selectedRecipe && !cookingMode && (
+                    <Modal onClose={closeModal}>
+                        <RecipeDetails
+                            recipe={selectedRecipe}
+                            onAddToSavedRecipes={handleAddToSavedRecipes}
+                            onToggleCookingMode={handleCookingModeToggle}
+                            onClose={closeRecipeDetails}
+                        />
+                    </Modal>
                 )}
-                <SavedRecipes savedRecipes={savedRecipes} onDeleteRecipe={handleDeleteRecipe}/>
+                <SavedRecipes savedRecipes={savedRecipes} onDeleteRecipe={handleDeleteRecipe} />
             </Authentication>
         </div>
     );

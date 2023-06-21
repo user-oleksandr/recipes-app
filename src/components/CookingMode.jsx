@@ -1,8 +1,13 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
-const CookingMode = ({recipe, onToggleMode}) => {
-    const {title, ingredients} = recipe;
+const CookingMode = ({ recipe, onToggleMode }) => {
     const [completedIngredients, setCompletedIngredients] = useState([]);
+
+    if (!recipe) {
+        return null;
+    }
+
+    const { title, ingredients } = recipe;
 
     const handleIngredientToggle = (ingredient) => {
         if (completedIngredients.includes(ingredient)) {
