@@ -1,13 +1,27 @@
 import React, {useState} from 'react';
-import RegistrationForm from './RegistrationForm';
-import LoginForm from './LoginForm';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 function Authentication({children}) {
     const [isAuthenticated, setIsAuthenticated] = useState(
         localStorage.getItem('isAuthenticated') === 'true'
     );
 
-    const handleRegistration = (registrationData) => {
+    const [loginData, setLoginData] = useState({
+        username: '',
+        password: '',
+    });
+
+    const [registrationData, setRegistrationData] = useState({
+        username: '',
+        password: '',
+    });
+
+    const [isRegistering, setIsRegistering] = useState(false);
+
+    const handleRegistration = (event) => {
+        event.preventDefault();
+
         localStorage.setItem('username', registrationData.username);
         localStorage.setItem('password', registrationData.password);
 
@@ -15,7 +29,9 @@ function Authentication({children}) {
         localStorage.setItem('isAuthenticated', 'true');
     };
 
-    const handleLogin = (loginData) => {
+    const handleLogin = (event) => {
+        event.preventDefault();
+
         const storedUsername = localStorage.getItem('username');
         const storedPassword = localStorage.getItem('password');
 
@@ -26,7 +42,7 @@ function Authentication({children}) {
             setIsAuthenticated(true);
             localStorage.setItem('isAuthenticated', 'true');
         } else {
-            alert("Invalid username or password");
+            alert('Invalid username or password');
         }
     };
 
@@ -38,25 +54,94 @@ function Authentication({children}) {
     const username = localStorage.getItem('username');
 
     return (
-        <div className="Authentication">
+        <>
             {isAuthenticated ? (
-                <div>
-                    <div className='box-aut'>
-                        <h1>Welcome dear:{' '}{username}</h1>
-                        <button onClick={handleLogout}>Exit</button>
+                <div className='container-fluid mt-5'>
+                    <div className='row pt-3 pb-3 bg-secondary'>
+                        <div className='col d-flex justify-content-between align-items-center'>
+                            <h5>Welcome dear: {username}</h5>
+                            <button className="btn btn-primary" onClick={handleLogout}>
+                                Exit
+                            </button>
+                        </div>
                     </div>
-                    <div>
-                        {children}
-                    </div>
+                    <div className='container mt-5'>{children}</div>
                 </div>
             ) : (
-                <div className='box-login'>
-                    <h1>log in or register</h1>
-                    <RegistrationForm onRegistration={handleRegistration}/>
-                    <LoginForm onLogin={handleLogin}/>
+                <div className='container mt-5 pb-5 rounded bg-secondary'>
+                    <div className='row text-center'>
+                        <h3 className='text-primary mt-5'>Log in or register</h3>
+                    </div>
+
+                    <form onSubmit={isRegistering ? handleRegistration : handleLogin}>
+                        <div className="row justify-content-center mt-5">
+                            <div className='col-5'>
+                                <input className="form-control form-control-sm" type="text"
+                                       placeholder="Enter your username"
+                                       value={isRegistering ? registrationData.username : loginData.username}
+                                       onChange={(event) =>
+                                           isRegistering
+                                               ? setRegistrationData({
+                                                   ...registrationData,
+                                                   username: event.target.value,
+                                               })
+                                               : setLoginData({
+                                                   ...loginData,
+                                                   username: event.target.value,
+                                               })
+                                       }
+                                       required
+                                />
+
+                                <input
+                                    className="form-control form-control-sm mt-2" type="password"
+                                    placeholder="Enter your password"
+                                    value={isRegistering ? registrationData.password : loginData.password}
+                                    onChange={(event) =>
+                                        isRegistering
+                                            ? setRegistrationData({
+                                                ...registrationData,
+                                                password: event.target.value,
+                                            })
+                                            : setLoginData({
+                                                ...loginData,
+                                                password: event.target.value,
+                                            })
+                                    }
+                                    required
+                                />
+                            </div>
+                        </div>
+
+                        <div className='col mt-3 text-center'>
+                            <button type="submit" className="btn btn-primary btn-sm">
+                                {isRegistering ? 'Sign up' : 'Enter'}
+                            </button>
+                        </div>
+
+                        <div className='row mt-3 text-center' style={{color: 'white'}}>
+                            {isRegistering ? (
+                                <p>
+                                    Already have an account?{' '}
+                                    <span className="text-primary" onClick={() => setIsRegistering(false)}
+                                          style={{cursor: 'pointer'}}>
+                                    Login here.
+                                </span>
+                                </p>
+                            ) : (
+                                <p>
+                                    Don't have an account?{' '}
+                                    <span className="text-primary" onClick={() => setIsRegistering(true)}
+                                          style={{cursor: 'pointer'}}>
+                                    Register here.
+                                </span>
+                                </p>
+                            )}
+                        </div>
+                    </form>
                 </div>
             )}
-        </div>
+        </>
     );
 }
 

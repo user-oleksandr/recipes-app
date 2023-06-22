@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const SearchRecipes = ({onSearch}) => {
     const [searchQuery, setSearchQuery] = useState('');
@@ -14,16 +15,19 @@ const SearchRecipes = ({onSearch}) => {
     };
 
     return (
-        <div className="search-recipes">
-            <div className='box-search'>
-                <input
-                    type="text"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    onKeyPress={handleKeyPress}
-                    placeholder="Search by name or ingredients"
-                />
-                <button onClick={handleSearch}>Search</button>
+        <div className="container">
+            <div className='row justify-content-center'>
+                <div className='col-8 d-flex'>
+                    <input className='form-control form-control-sm'
+                           type="form"
+                           value={searchQuery}
+                           onChange={(e) => setSearchQuery(e.target.value)}
+                           onKeyPress={handleKeyPress}
+                           placeholder="Search by name or ingredients"
+                    />
+                    <button className='btn btn-primary btn-sm ms-2' onClick={handleSearch}>Search</button>
+                </div>
+
             </div>
         </div>
     );
