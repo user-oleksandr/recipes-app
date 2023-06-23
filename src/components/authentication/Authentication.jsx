@@ -57,7 +57,7 @@ function Authentication({children}) {
         <>
             {isAuthenticated ? (
                 <div className='container-fluid mt-5'>
-                    <div className='row pt-3 pb-3 bg-secondary'>
+                    <div className='row pt-3 pb-3' style={{backgroundColor:'#A3AFB9'}}>
                         <div className='col d-flex justify-content-between align-items-center'>
                             <h5>Welcome dear: {username}</h5>
                             <button className="btn btn-primary" onClick={handleLogout}>
@@ -68,7 +68,7 @@ function Authentication({children}) {
                     <div className='container mt-5'>{children}</div>
                 </div>
             ) : (
-                <div className='container mt-5 pb-5 rounded bg-secondary'>
+                <div className='container mt-5 pb-5 rounded' style={{backgroundColor:'#A3AFB9'}}>
                     <div className='row text-center'>
                         <h3 className='text-primary mt-5'>Log in or register</h3>
                     </div>

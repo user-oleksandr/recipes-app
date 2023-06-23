@@ -44,13 +44,19 @@ const CookingMode = ({ recipe, onToggleMode }) => {
                     </ul>
                 </div>
             </div>
-            <div className='col mt-5'>
-                <h5>Instructions:</h5>
-                <a href={instructions} className='link'>{instructions}</a>
+            <div className='row mt-5'>
+                <div className='col'>
+                    <h5>Instructions:</h5>
+                    <a href={instructions} className='link'>{instructions}</a>
+                </div>
             </div>
-            <div className='col text-center pt-5'>
-                <button className='btn btn-primary btn-sm' onClick={handleResetCookingMode}>Reset cooking mode</button>
-                <button className='btn btn-primary btn-sm ms-2 ' onClick={onToggleMode}>Return to recipe details</button>
+            <div className='row text-center pt-5'>
+                <div className='col text-end'>
+                    <button className='btn btn-primary btn-sm' onClick={handleResetCookingMode}>Reset cooking mode</button>
+                </div>
+                <div className='col text-start'>
+                    <button className='btn btn-primary btn-sm' onClick={onToggleMode}>Return to recipe details</button>
+                </div>
             </div>
         </div>
     );

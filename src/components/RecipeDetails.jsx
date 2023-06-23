@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
-const RecipeDetails = ({recipe, onAddToSavedRecipes, onClose, onToggleCookingMode}) => {
+const RecipeDetails = ({recipe, onAddToSavedRecipes, onClose}) => {
     const {
         title,
         description,
@@ -119,8 +119,6 @@ const RecipeDetails = ({recipe, onAddToSavedRecipes, onClose, onToggleCookingMod
                     <button className='btn btn-primary btn-sm' onClick={() => onAddToSavedRecipes(recipe)}>Add to
                         saved
                         recipes
-                    </button>
-                    <button className='btn btn-primary btn-sm ms-2' onClick={onToggleCookingMode}>Start Cooking
                     </button>
                 </div>
             </div>

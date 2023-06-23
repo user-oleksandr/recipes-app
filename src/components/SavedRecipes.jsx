@@ -48,7 +48,7 @@ const SavedRecipes = ({savedRecipes, onDeleteRecipe, onClose}) => {
                                             className="btn btn-primary btn-sm"
                                             onClick={() => openCookingMode(recipe)}
                                         >
-                                            Почати приготування
+                                            Start cooking
                                         </button>
                                     </div>
                                     <div className='col mt-1'>
@@ -56,7 +56,7 @@ const SavedRecipes = ({savedRecipes, onDeleteRecipe, onClose}) => {
                                             className="btn btn-primary btn-sm"
                                             onClick={() => onDeleteRecipe(recipe.id)}
                                         >
-                                            Видалити
+                                            Delete
                                         </button>
                                     </div>
                                 </div>
