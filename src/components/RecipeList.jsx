@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-const RecipeList = ({ onRecipeSelect, searchQuery }) => {
+const RecipeList = ({onRecipeSelect, searchQuery}) => {
     const [recipes, setRecipes] = useState([]);
 
     useEffect(() => {
@@ -15,28 +16,30 @@ const RecipeList = ({ onRecipeSelect, searchQuery }) => {
                 const response = await fetch(url);
                 const data = await response.json();
 
-                const retrievedRecipes = data.hits.slice(0, 20).map((hit) => {
-                    const recipe = hit.recipe;
-                    return {
-                        id: recipe.uri,
-                        title: recipe.label,
-                        description: recipe.source,
-                        ingredients: recipe.ingredientLines,
-                        instructions: recipe.url,
-                        image: recipe.image,
-                        calories: recipe.calories,
-                        totalTime: recipe.totalTime,
-                        dietLabels: recipe.dietLabels,
-                        healthLabels: recipe.healthLabels,
-                        yield: recipe.yield,
-                        cuisineType: recipe.cuisineType,
-                        mealType: recipe.mealType,
-                        dishType: recipe.dishType,
-                        cautions: recipe.cautions,
-                        totalWeight: recipe.totalWeight,
-                        totalDaily: recipe.totalDaily,
-                    };
-                });
+                const retrievedRecipes = data.hits
+                    .slice(0, 20)
+                    .map((hit) => {
+                        const recipe = hit.recipe;
+                        return {
+                            id: recipe.uri,
+                            title: recipe.label,
+                            description: recipe.source,
+                            ingredients: recipe.ingredientLines,
+                            instructions: recipe.url,
+                            image: recipe.image,
+                            calories: recipe.calories,
+                            totalTime: recipe.totalTime,
+                            dietLabels: recipe.dietLabels,
+                            healthLabels: recipe.healthLabels,
+                            yield: recipe.yield,
+                            cuisineType: recipe.cuisineType,
+                            mealType: recipe.mealType,
+                            dishType: recipe.dishType,
+                            cautions: recipe.cautions,
+                            totalWeight: recipe.totalWeight,
+                            totalDaily: recipe.totalDaily,
+                        };
+                    });
 
                 recipeList.push(...retrievedRecipes);
 
@@ -50,14 +53,28 @@ const RecipeList = ({ onRecipeSelect, searchQuery }) => {
     }, [searchQuery]);
 
     return (
-        <div className="recipe-list">
-            {recipes.map((recipe) => (
-                <div key={recipe.id} className="recipe-card" onClick={() => onRecipeSelect(recipe)}>
-                    <h3>{recipe.title}</h3>
-                    <p>{recipe.description}</p>
-                    {recipe.image && <img src={recipe.image} alt={recipe.title} />}
-                </div>
-            ))}
+        <div className="container mt-5">
+            <div className="row pt-5">
+                {recipes.map((recipe) => (
+                    <div
+                        className="col-md-3 card-pointer"
+                        key={recipe.id}
+                        onClick={() => onRecipeSelect(recipe)}
+                    >
+                        <div className="card mb-4">
+                            {recipe.image && (
+                                <img src={recipe.image} className="card-img-top" alt={recipe.title}/>
+                            )}
+                            <div className="card-body">
+                                <h5 className="card-title">
+                                    {recipe.title}
+                                </h5>
+                                <p className="card-text">{recipe.description}</p>
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
         </div>
     );
 };

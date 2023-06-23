@@ -22,32 +22,36 @@ const CookingMode = ({ recipe, onToggleMode }) => {
     };
 
     return (
-        <div className="cooking-mode">
-            <div>
-                <h2>{title}</h2>
-                <h3>List of ingredients:</h3>
+        <div className="container-fluid">
+            <hr/>
+            <div className='row pt-5 text-center'>
+                <h5 className='value'>{title}</h5>
             </div>
 
-            <ul>
-                {ingredients.map((ingredient, index) => (
-                    <li
-                        key={index}
-                        className={completedIngredients.includes(ingredient) ? 'completed' : ''}
-                        onClick={() => handleIngredientToggle(ingredient)}
-                    >
-                        {ingredient}
-                    </li>
-                ))}
-            </ul>
-
-            <div>
-                <h3>Instructions:</h3>
-                <p>{instructions}</p>
-
+            <div className='row'>
+                <div className='col mt-5 list-ingridients'>
+                    <h5 className='title'>List of ingredients:</h5>
+                    <ul style={{listStyle: 'none', padding: 0}}>
+                        {ingredients.map((ingredient, index) => (
+                            <li
+                                key={index}
+                                className={completedIngredients.includes(ingredient) ? 'completed' : ''}
+                                onClick={() => handleIngredientToggle(ingredient)}
+                            >
+                                {ingredient}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
             </div>
-
-            <button onClick={handleResetCookingMode}>Reset cooking mode</button>
-            <button onClick={onToggleMode}>Return to recipe details</button>
+            <div className='col mt-5'>
+                <h5>Instructions:</h5>
+                <a href={instructions} className='link'>{instructions}</a>
+            </div>
+            <div className='col text-center pt-5'>
+                <button className='btn btn-primary btn-sm' onClick={handleResetCookingMode}>Reset cooking mode</button>
+                <button className='btn btn-primary btn-sm ms-2 ' onClick={onToggleMode}>Return to recipe details</button>
+            </div>
         </div>
     );
 };

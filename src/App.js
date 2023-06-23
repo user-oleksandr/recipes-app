@@ -5,7 +5,6 @@ import SavedRecipes from './components/SavedRecipes';
 import RecipeDetails from './components/RecipeDetails';
 import CookingMode from './components/CookingMode';
 import SearchRecipes from './components/SearchRecipes';
-import Modal from './components/Modal';
 import './App.css';
 
 function App() {
@@ -56,9 +55,7 @@ function App() {
         <div className="App">
             <Authentication>
                 {cookingMode ? (
-                    <Modal onClose={closeModal}>
                         <CookingMode recipe={selectedRecipe} onToggleMode={handleCookingModeToggle} />
-                    </Modal>
                 ) : (
                     <>
                         <SearchRecipes onSearch={handleSearchRecipes} />
@@ -70,14 +67,12 @@ function App() {
                     </>
                 )}
                 {selectedRecipe && !cookingMode && (
-                    <Modal onClose={closeModal}>
                         <RecipeDetails
                             recipe={selectedRecipe}
                             onAddToSavedRecipes={handleAddToSavedRecipes}
                             onToggleCookingMode={handleCookingModeToggle}
                             onClose={closeRecipeDetails}
                         />
-                    </Modal>
                 )}
                 <SavedRecipes savedRecipes={savedRecipes} onDeleteRecipe={handleDeleteRecipe} />
             </Authentication>

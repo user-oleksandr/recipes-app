@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 const RecipeDetails = ({recipe, onAddToSavedRecipes, onClose, onToggleCookingMode}) => {
     const {
@@ -20,69 +21,108 @@ const RecipeDetails = ({recipe, onAddToSavedRecipes, onClose, onToggleCookingMod
     } = recipe;
 
     return (
-        <div className="recipe-details">
-            <button className="close-button" onClick={onClose}>
-                Х
-            </button>
-            <h2>{title}</h2>
-            <p>{description}</p>
-            {image && <img src={image} alt={title}/>}
-            <h3>Ingredients:</h3>
-            <ul>
-                {ingredients.map((ingredient, index) => (
-                    <li key={index}>{ingredient}</li>
-                ))}
-            </ul>
-            <h3>Calories:</h3>
-            <p>{calories}</p>
-            <h3>Total Time:</h3>
-            <p>{totalTime}</p>
-            <h3>Yield:</h3>
-            <p>{recipeYield}</p>
-            <h3>Cuisine Type:</h3>
-            <p>{cuisineType}</p>
-            <h3>Meal Type:</h3>
-            <p>{mealType}</p>
-            <h3>Dish Type:</h3>
-            <p>{dishType}</p>
-            <h3>Cautions:</h3>
-            <ul>
-                {cautions.map((caution, index) => (
-                    <li key={index}>{caution}</li>
-                ))}
-            </ul>
-            <div>
-                <h3>Diet Labels:</h3>
-                {dietLabels.length > 0 ? (
-                    <ul>
-                        {dietLabels.map((label, index) => (
+        <div className="container box-content-modal">
+            <div className='row text-end'>
+                <div className='col'>
+                    <button className="btn btn-primary btn-sm" onClick={onClose}>
+                        Х
+                    </button>
+                </div>
+            </div>
+            <div className='row text-center'>
+                <h5 className='value'>{title}</h5>
+                <p>{description}</p>
+            </div>
+            <div className='row d-flex mt-5'>
+                <div className='col'>
+                    {image && <img className='img rounded' src={image} alt={title}/>}
+                </div>
+                <div className='col'>
+                    <h5 className='value'>Ingredients:</h5>
+                    <ul style={{listStyle: 'none', padding: 0}}>
+                        {ingredients.map((ingredient, index) => (
+                            <li key={index}>{ingredient}</li>
+                        ))}
+                    </ul>
+                </div>
+            </div>
+            <hr/>
+            <div className='row d-flex mt-5'>
+                <div className='col'>
+                    <h5 className='value'>Health:</h5>
+                    <ul style={{listStyle: 'none', padding: 0}}>
+                        {healthLabels.map((label, index) => (
                             <li key={index}>{label}</li>
                         ))}
                     </ul>
-                ) : (
-                    <p>No diet labels available.</p>
-                )}
+                </div>
+                <div className='col'>
+                    <h5 className='value'>Total Daily:</h5>
+                    <ul style={{listStyle: 'none', padding: 0}}>
+                        {Object.entries(totalDaily).map(([key, value]) => (
+                            <li key={key} style={{fontSize: '12px'}}>
+                                {key}: {value.label} - {Math.round(value.quantity)}
+                                {value.unit}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
             </div>
-            <h3>Health:</h3>
-            <ul>
-                {healthLabels.map((label, index) => (
-                    <li key={index}>{label}</li>
-                ))}
-            </ul>
-            <h3>Total Weight:</h3>
-            <p>{totalWeight}</p>
-            <h3>Total Daily:</h3>
-            <ul>
-                {Object.entries(totalDaily).map(([key, value]) => (
-                    <li key={key}>
-                        {key}: {value.label} - {value.quantity}
-                        {value.unit}
-                    </li>
-                ))}
-            </ul>
-            <div className="box-button">
-                <button onClick={() => onAddToSavedRecipes(recipe)}>Add to saved recipes</button>
-                <button onClick={onToggleCookingMode}>Start Cooking</button>
+            <hr/>
+            <div className='row mt-5'>
+                <div>
+                    <div>Total Weight: <span className='value'>{Math.round(totalWeight)}</span>
+                    </div>
+                </div>
+                <div>
+                    <div>Calories: <span className='value'>{Math.round(calories)}</span></div>
+                </div>
+                <div>
+                    <div>Total Time: <span className='value'>{totalTime}</span></div>
+                </div>
+                <div>
+                    <div>Yield: <span className='value'>{recipeYield}</span></div>
+                </div>
+                <div>
+                    <div>Cuisine Type: <span className='value'>{cuisineType}</span></div>
+                </div>
+                <div>
+                    <div>Meal Type: <span className='value'>{mealType}</span></div>
+                </div>
+                <div>
+                    <div>Dish Type: <span className='value'>{dishType}</span></div>
+                </div>
+                <div>
+                    <div>Cautions: <span className='value'>
+                         <span>
+                        {cautions.map((caution, index) => (
+                            <span key={index}>{caution}</span>
+                        ))}
+                    </span>
+                    </span>
+                    </div>
+                </div>
+                <div>
+                    <div>Diet Labels: <span className='value'>
+                        {dietLabels.length > 0 ? (
+                            <div>{dietLabels.map((label, index) => (<span key={index}>{label}</span>))}</div>
+                        ) : (
+                            <span>No diet labels available.</span>
+                        )}
+                    </span>
+                    </div>
+                </div>
+            </div>
+
+            <div className="row  mt-5 mb-5">
+                <div className='col-12 text-center'>
+                    <button className='btn btn-primary btn-sm' onClick={() => onAddToSavedRecipes(recipe)}>Add to
+                        saved
+                        recipes
+                    </button>
+                    <button className='btn btn-primary btn-sm ms-2' onClick={onToggleCookingMode}>Start Cooking
+                    </button>
+                </div>
             </div>
         </div>
     );
